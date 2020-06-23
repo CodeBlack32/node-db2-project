@@ -14,16 +14,15 @@ router.get("/", (req, res) => {
     });
 });
 
-router
-  .post("/", (req, res) => {
-    const carData = req.body;
-    db("cars")
-      .insert(carData)
-      .then((newCar) => {
-        res.status(201).json(newCar);
-      });
-  })
-  .catch((err) => {
-    console.log("POST error", err);
-    res.status(500).json({ message: "Failed to post data" });
-  });
+router.post("/", (req, res) => {
+  const carData = req.body;
+  db("cars")
+    .insert(carData)
+    .then((newCar) => {
+      res.status(201).json(newCar);
+    })
+    .catch((err) => {
+      console.log("POST error", err);
+      res.status(500).json({ message: "Failed to post data" });
+    });
+});
